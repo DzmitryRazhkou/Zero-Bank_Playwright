@@ -1,0 +1,53 @@
+{
+  "mainPage": {
+    "pageTitle": "Zero - Personal Banking - Loans - Credit Cards",
+    "listOfPageNavigation": ["Home", "Online Banking", "Feedback"],
+    "pageNavigationSection": {
+      "homePage": "Home",
+      "onlineBankingPage": "Online Banking",
+      "feedbackPage": "Feedback"
+    },
+    "pageNavigationContent": {
+      "homeContent": "Welcome to Zero Online Banking. Zero provides a greener and more convenient way to manage your money. Zero enables you to check your account balances, pay your bills, transfer money, and  keep detailed records of your transactions,  wherever there is an internet connection.",
+      "onlineBankingActivitesSectionTitle": [
+        "Account Summary",
+        "Account Activity",
+        "Transfer Funds",
+        "Pay Bills",
+        "My Money Map",
+        "Online Statements"
+      ],
+      "onlineBankingActivites": {
+        "accountSummary": "Account Summary",
+        "accountActivity": "Account Activity",
+        "transferFunds": "Transfer Funds",
+        "payBills": "Pay Bills",
+        "myMoneyMap": "My Money Map",
+        "onlineStatements": "Online Statements"
+      },
+      "onlineBankingActivitesSectionContent": [
+        "See all of your account balances at a glance.",
+        "View the most up-to-date listings of your deposits, withdrawals, interest payments, and other transactions.",
+        "Safely and securely transfer funds between accounts.",
+        "Pay your bills quickly and securely online.",
+        "Use Zero to set up and monitor your personalized money map. A money map is an easy-to-use online tool that helps you manage your finances efficiently.",
+        "View the statement history of all your accounts."
+      ]
+    }
+  },
+  "loginCredentials": {
+    "userName": "username",
+    "psw": "password"
+  },
+  "onlineBanking": {
+    "accountSummary": {
+      "accountsTitles": [
+        "Cash Accounts",
+        "Investment Accounts",
+        "Credit Accounts",
+        "Loan Accounts"
+      ],
+      "balance": ["1000", "1548", "197", "-500.2", "-265", "780"]
+    }
+  }
+}

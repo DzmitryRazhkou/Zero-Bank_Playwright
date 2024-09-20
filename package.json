@@ -1,0 +1,17 @@
+{
+  "name": "Playwright-Zero-Bank_WebApp",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.47.1",
+    "@types/node": "^22.5.4",
+    "playwright": "^1.47.0"
+  },
+  "scripts": {
+    "playwright:start-page": "yarn playwright test"
+  },
+  "dependencies": {
+    "@faker-js/faker": "^9.0.1"
+  }
+}
