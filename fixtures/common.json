@@ -48,6 +48,42 @@
         "Loan Accounts"
       ],
       "balance": ["1000", "1548", "197", "-500.2", "-265", "780"]
-    }
+    },
+    "trans": {
+      "description": "PAYCHECK",
+      "date": "2012-09-01",
+      "amount": "2000"
+    },
+    "accountArray": ["Savings", "Checking", "Loan", "Credit Card", "Brokerage"],
+    "transactions": [
+      {
+        "account": {
+          "description": "PAYCHECK",
+          "date": "2012-09-01",
+          "withdrawal": "1173.1"
+        }
+      },
+      {
+        "account": {
+          "description": "CAR PAYMENT",
+          "date": "2012-09-01",
+          "withdrawal": "1548"
+        }
+      },
+      {
+        "account": {
+          "description": "OFFICE SUPPLY",
+          "date": "2012-09-05",
+          "withdrawal": "50"
+        }
+      },
+      {
+        "account": {
+          "description": "RENT",
+          "date": "2012-09-01",
+          "withdrawal": "2000"
+        }
+      }
+    ]
   }
 }

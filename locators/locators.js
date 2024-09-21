@@ -40,6 +40,28 @@ const onlineBankingPageLocators = {
   // Account Summary:
   accountTitlesLocator: "h2[class='board-header']",
   balanceLocator: "div[class='board-content']>table>tbody>tr>td:nth-child(3)",
+
+  // Account Activity:
+  accountDropDownLocator: "#aa_accountId",
+  findTransactionsButtonLocator: "a[href='#ui-tabs-2']",
+
+  // Find Transactions:
+  descriptionInputFieldLocator: "#aa_description",
+  datesFromInputFieldLocator: "#aa_fromDate",
+  datesToInputFieldLocator: "#aa_toDate",
+  amountsFromInputFieldLocator: "#aa_fromAmount",
+  amountsToInputFieldLocator: "#aa_toAmount",
+  findButtonLocator: "button[type='submit']",
+  boardLocator: "div[class='board']",
+  noResultsLocator: ".well",
+
+  // Results:
+  resultDateLocator:
+    "#filtered_transactions_for_account>table>tbody>tr>td:nth-child(1)",
+  resultDescriptionLocator:
+    "#filtered_transactions_for_account>table>tbody>tr>td:nth-child(2)",
+  resultWithdrawalLocator:
+    "#filtered_transactions_for_account>table>tbody>tr>td:nth-child(4)",
 };
 export default {
   startPageLocators,

@@ -68,6 +68,11 @@ class BasePage {
     const emailAddress = fullName.toLowerCase().replace(/\s+/g, "");
     return emailAddress + emailProvider[randomIndex];
   }
+
+  async genarateRandomElement(array) {
+    const randonIndex = Math.floor(Math.random() * array.length);
+    return array[randonIndex];
+  }
 }
 
 export default BasePage;

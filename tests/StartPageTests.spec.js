@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-const { startPageLocators, loginPageLocators } =
+const { startPageLocators, loginPageLocators, onlineBankingPageLocators } =
   require("../locators/locators").default;
 const { feedBackData } = require("../utils/generated-data");
 const dataSet = require("../fixtures/common.json");
@@ -13,7 +13,7 @@ let onlineBankingPage;
 let page;
 let context;
 
-test.describe(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
+test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
   test.beforeAll(async ({ browser }) => {
     context = await browser.newContext();
   });
@@ -40,9 +40,21 @@ test.describe(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     await startPage.verifyURL();
     await startPage.verifyTitlePage(pageTitle);
     await startPage.clickOnPageNavigation(onlineBankPage);
+
+    await page.evaluate(() => {
+      localStorage.clear();
+      sessionStorage.clear();
+    });
   });
 
   test.afterEach(async () => {
+    // Clear cookies and cache after each test
+    await context.clearCookies();
+    await page.evaluate(() => {
+      localStorage.clear();
+      sessionStorage.clear();
+    });
+
     await page.close();
   });
 
@@ -50,7 +62,7 @@ test.describe(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     await context.close();
   });
 
-  test.only(" =====> Online Banking Tests | 'Account Summary' 📈 📋 💰 <===== ", async () => {
+  test(" =====> Online Banking Tests | 'Account Summary' 📈 📋 💰 <===== ", async () => {
     const accountSummary =
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites
         .accountSummary;
@@ -63,6 +75,43 @@ test.describe(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     await startPage.clickOnOnlineBankingActivity(accountSummary);
     await onlineBankingPage.verifyAccountsTitles(accountsTitles);
     await onlineBankingPage.verifyBalance(balance);
+  });
+  test(" =====> Online Banking Tests | 'Account Activity' | Show Transactions 💳 📜 🔍 <===== ", async () => {
+    const accountActivity =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites
+        .accountActivity;
+    const account = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.accountArray
+    );
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(accountActivity);
+    await onlineBankingPage.selectActivityFromDropDown(account);
+  });
+  test(" =====> Online Banking Tests | 'Account Activity' | Find Transactions 💳 📊 🔍 <===== ", async () => {
+    const accountActivity =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites
+        .accountActivity;
+    const account = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.accountArray
+    );
+    const description = dataSet.onlineBanking.trans.description;
+    const date = dataSet.onlineBanking.trans.date;
+    const amount = dataSet.onlineBanking.trans.amount;
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(accountActivity);
+    await onlineBankingPage.selectActivityFromDropDown(account);
+    await onlineBankingPage.clickOnWebElement(
+      onlineBankingPageLocators.findTransactionsButtonLocator
+    );
+
+    await onlineBankingPage.doFindTransaction(description, date, amount);
+    await onlineBankingPage.verifyNoResults();
   });
 });
 
