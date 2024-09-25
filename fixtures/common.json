@@ -84,6 +84,13 @@
           "withdrawal": "2000"
         }
       }
-    ]
+    ],
+    "transferMoneyMakePayments": {
+      "transferMoneyMakePaymentsVerifyTxt": "Transfer Money & Make Payments - Verify",
+      "valueOne": "1",
+      "valueTwo": "2",
+      "amount": "300",
+      "successMsg": "You successfully submitted your transaction."
+    }
   }
 }

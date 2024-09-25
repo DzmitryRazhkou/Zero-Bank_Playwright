@@ -42,6 +42,27 @@ class OnlineBankingPage extends BasePage {
     );
     this.board = page.locator(onlineBankingPageLocators.boardLocator).nth(1);
     this.noResults = page.locator(onlineBankingPageLocators.noResultsLocator);
+    this.fromAccountDropDown = page.locator(
+      onlineBankingPageLocators.fromAccountDropDownLocator
+    );
+    this.toAccountDropDown = page.locator(
+      onlineBankingPageLocators.toAccountDropDownLocator
+    );
+    this.amountInputFieldTransfer = page.locator(
+      onlineBankingPageLocators.amountInputFieldTransferLocator
+    );
+    this.descriptionInputFieldTransfer = page.locator(
+      onlineBankingPageLocators.descriptionInputFieldTransferLocator
+    );
+    this.continueButton = page.locator(
+      onlineBankingPageLocators.continueButtonLocator
+    );
+    this.transferMoneyMakePaymentsVerify = page.locator(
+      onlineBankingPageLocators.transferMoneyMakePaymentsVerifyLocator
+    );
+    this.alertSuccessMsg = page.locator(
+      onlineBankingPageLocators.alertSuccessMsgLocator
+    );
   }
 
   async verifyAccountsTitles(array) {
@@ -73,6 +94,31 @@ class OnlineBankingPage extends BasePage {
   async verifyNoResults() {
     const noResultsMsg = await this.noResults.textContent();
     expect(noResultsMsg.trim()).toEqual("No results.");
+  }
+
+  async doTransferMoneyMakePayments(
+    fromAccount,
+    toAccount,
+    amount,
+    description
+  ) {
+    await this.fromAccountDropDown.selectOption(fromAccount);
+    await this.toAccountDropDown.selectOption(toAccount);
+    await this.amountInputFieldTransfer.fill(amount);
+    await this.descriptionInputFieldTransfer.fill(description);
+    await this.continueButton.click();
+  }
+
+  async verifyTransferMoneyHeaderTxt(transferMoneyHeaderTxt) {
+    const txt = await this.transferMoneyMakePaymentsVerify.textContent();
+    expect(txt).toEqual(transferMoneyHeaderTxt);
+  }
+
+  async verifyAlertSuccessMsgTxt(alertSuccessMsg) {
+    const txt = await this.alertSuccessMsg.textContent();
+    const normalizeText = (text) => text.replace(/\s+/g, " ").trim();
+
+    expect(normalizeText(txt)).toBe(normalizeText(alertSuccessMsg));
   }
 }
 

@@ -113,6 +113,39 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     await onlineBankingPage.doFindTransaction(description, date, amount);
     await onlineBankingPage.verifyNoResults();
   });
+  test(" =====> Online Banking Tests | 'Account Activity' | Transfer Funds 💸 ➡️ 💳 <===== ", async () => {
+    const transferFunds =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites
+        .transferFunds;
+    const fromAccount =
+      dataSet.onlineBanking.transferMoneyMakePayments.valueOne;
+    const toAccount = dataSet.onlineBanking.transferMoneyMakePayments.valueTwo;
+    const amount = dataSet.onlineBanking.transferMoneyMakePayments.amount;
+    const description = feedBackData.descriptionTransfer;
+    const transferMoneyMakePaymentsVerifyTxt =
+      dataSet.onlineBanking.transferMoneyMakePayments
+        .transferMoneyMakePaymentsVerifyTxt;
+    const successMsgTxt =
+      dataSet.onlineBanking.transferMoneyMakePayments.successMsg;
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(transferFunds);
+    await onlineBankingPage.doTransferMoneyMakePayments(
+      fromAccount,
+      toAccount,
+      amount,
+      description
+    );
+    await onlineBankingPage.verifyTransferMoneyHeaderTxt(
+      transferMoneyMakePaymentsVerifyTxt
+    );
+    await onlineBankingPage.clickOnWebElement(
+      onlineBankingPageLocators.continueButtonLocator
+    );
+    await onlineBankingPage.verifyAlertSuccessMsgTxt(successMsgTxt);
+  });
 });
 
 test.describe(`Start Page Tests 🏠 📄. `, () => {

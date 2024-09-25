@@ -62,6 +62,16 @@ const onlineBankingPageLocators = {
     "#filtered_transactions_for_account>table>tbody>tr>td:nth-child(2)",
   resultWithdrawalLocator:
     "#filtered_transactions_for_account>table>tbody>tr>td:nth-child(4)",
+
+  // Transfer Money & Make Payments:
+  transferMoneyMakePaymentsVerifyLocator: "h2[class='board-header']",
+  fromAccountDropDownLocator: "#tf_fromAccountId",
+  toAccountDropDownLocator: "#tf_toAccountId",
+  amountInputFieldTransferLocator: "#tf_amount",
+  descriptionInputFieldTransferLocator: "#tf_description",
+  continueButtonLocator: "#btn_submit",
+  // Success Msg:
+  alertSuccessMsgLocator: "div[class='alert alert-success']",
 };
 export default {
   startPageLocators,
