@@ -91,6 +91,18 @@
       "valueTwo": "2",
       "amount": "300",
       "successMsg": "You successfully submitted your transaction."
+    },
+    "payBills": {
+      "payeesList": ["Sprint", "Apple", "Wells Fargo", "Bank of America"],
+      "accountPayeesList": ["Savings", "Checking", "Loan", "Credit Card"],
+      "amountPayeesList": ["500", "750", "1500", "2000"],
+      "datePayeeList": [
+        "2019-09-01",
+        "2022-12-15",
+        "2020-09-25",
+        "2018-09-10",
+        "2014-05-05"
+      ]
     }
   }
 }

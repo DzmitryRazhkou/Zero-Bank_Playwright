@@ -6,6 +6,7 @@ const dataSet = require("../fixtures/common.json");
 import StartPage from "../pages/StartPage";
 import LoginPage from "../pages/LoginPage";
 import OnlineBankingPage from "../pages/OnlineBankingPage";
+import { on } from "stream";
 
 let startPage;
 let loginPage;
@@ -113,7 +114,7 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     await onlineBankingPage.doFindTransaction(description, date, amount);
     await onlineBankingPage.verifyNoResults();
   });
-  test(" =====> Online Banking Tests | 'Account Activity' | Transfer Funds 💸 ➡️ 💳 <===== ", async () => {
+  test(" =====> Online Banking Tests | 'Transfer Funds' | Transfer Money & Make Payments 💸 ➡️ 💳 <===== ", async () => {
     const transferFunds =
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites
         .transferFunds;
@@ -145,6 +146,51 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
       onlineBankingPageLocators.continueButtonLocator
     );
     await onlineBankingPage.verifyAlertSuccessMsgTxt(successMsgTxt);
+  });
+  test(" =====> Online Banking Tests | 'Pay Bills' | Pay Saved Payee 💾 💰 👤 <===== ", async () => {
+    const payBills =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites.payBills;
+    const payee = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.payBills.payeesList
+    );
+    const account = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.payBills.accountPayeesList
+    );
+    const amount = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.payBills.amountPayeesList
+    );
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(payBills);
+    await onlineBankingPage.doPayeeSavedPayee(payee, account, amount);
+    await onlineBankingPage.clickOnWebElement(
+      onlineBankingPageLocators.addNewPayeeButtonLocator
+    );
+  });
+  test(" =====> Online Banking Tests | 'Pay Bills' | Add New Payee 💸 🆕 🧾 <===== ", async () => {
+    const payBills =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites.payBills;
+    const payeeName = feedBackData.payeeName;
+    const payeeAddress = feedBackData.payeeAddress;
+    const account = await onlineBankingPage.genarateRandomElement(
+      dataSet.onlineBanking.payBills.accountPayeesList
+    );
+    const payeeDetails = feedBackData.payeeDetails;
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(payBills);
+    await onlineBankingPage.doClickAddNewPayee();
+    await onlineBankingPage.doAddNewPayee(
+      payeeName,
+      payeeAddress,
+      account,
+      payeeDetails
+    );
+    await onlineBankingPage.verifyNewPayeeAlertMsg(payeeName);
   });
 });
 

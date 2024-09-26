@@ -72,6 +72,23 @@ const onlineBankingPageLocators = {
   continueButtonLocator: "#btn_submit",
   // Success Msg:
   alertSuccessMsgLocator: "div[class='alert alert-success']",
+
+  // Pay Biils | Pay Saved Payee:
+  payeeDropDownLocator: "select[id='sp_payee']",
+  accountPayeeDropDownLocator: "#sp_account",
+  amountPayeeInputLocator: "#sp_amount",
+  datePayeeInputLocator: "#sp_date",
+  paySavedpayeesButtonLocator: "#pay_saved_payees",
+
+  // Pay Biils | Add New Payee:
+  addNewPayeeSectionButtonLocator: "a[href='#ui-tabs-2']",
+  payeeNameInputLocator: "#np_new_payee_name",
+  payeeAddressInputLocator: "#np_new_payee_address",
+  payeeAccountInputLocator: "#np_new_payee_account",
+  payeeDetailsInputLocator: "#np_new_payee_details",
+  addNewPayeeButtonLocator: "#add_new_payee",
+  descriptionPayeeInputLocator: "#sp_description",
+  newPayeeAlertContentLocator: "#alert_content",
 };
 export default {
   startPageLocators,

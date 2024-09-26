@@ -63,6 +63,45 @@ class OnlineBankingPage extends BasePage {
     this.alertSuccessMsg = page.locator(
       onlineBankingPageLocators.alertSuccessMsgLocator
     );
+    this.payeeDropDown = page.locator(
+      onlineBankingPageLocators.payeeDropDownLocator
+    );
+    this.accountPayeeDropDown = page.locator(
+      onlineBankingPageLocators.accountPayeeDropDownLocator
+    );
+    this.amountPayeeInput = page.locator(
+      onlineBankingPageLocators.amountPayeeInputLocator
+    );
+    this.datePayeeInput = page.locator(
+      onlineBankingPageLocators.datePayeeInputLocator
+    );
+    this.descriptionPayeeInput = page.locator(
+      onlineBankingPageLocators.descriptionPayeeInputLocator
+    );
+    this.paySavedPayeesButton = page.locator(
+      onlineBankingPageLocators.paySavedpayeesButtonLocator
+    );
+    this.addNewPayeeSectionButton = page.locator(
+      onlineBankingPageLocators.addNewPayeeSectionButtonLocator
+    );
+    this.payeeNameInput = page.locator(
+      onlineBankingPageLocators.payeeNameInputLocator
+    );
+    this.payeeAddressInput = page.locator(
+      onlineBankingPageLocators.payeeAddressInputLocator
+    );
+    this.payeeAccountInput = page.locator(
+      onlineBankingPageLocators.payeeAccountInputLocator
+    );
+    this.payeeDetailsInput = page.locator(
+      onlineBankingPageLocators.payeeDetailsInputLocator
+    );
+    this.addNewPayeeButton = page.locator(
+      onlineBankingPageLocators.addNewPayeeButtonLocator
+    );
+    this.newPayeeAlertContent = page.locator(
+      onlineBankingPageLocators.newPayeeAlertContentLocator
+    );
   }
 
   async verifyAccountsTitles(array) {
@@ -119,6 +158,32 @@ class OnlineBankingPage extends BasePage {
     const normalizeText = (text) => text.replace(/\s+/g, " ").trim();
 
     expect(normalizeText(txt)).toBe(normalizeText(alertSuccessMsg));
+  }
+
+  async doPayeeSavedPayee(payee, account, amount) {
+    this.payeeDropDown.selectOption(payee);
+    this.accountPayeeDropDown.selectOption({ label: account });
+    this.amountPayeeInput.fill(amount);
+  }
+
+  async doClickAddNewPayee() {
+    await this.addNewPayeeSectionButton.click();
+  }
+
+  async doAddNewPayee(name, address, account, details) {
+    await this.payeeNameInput.fill(name);
+    await this.payeeAddressInput.fill(address);
+    await this.payeeAccountInput.fill(account);
+    await this.payeeDetailsInput.fill(details);
+    await this.addNewPayeeButton.click();
+  }
+
+  async verifyNewPayeeAlertMsg(name) {
+    const alertMsg = `The new payee ${name} was successfully created.`;
+    const alertMsgContentTxt = await this.newPayeeAlertContent.textContent();
+    console.log(" =====> " + alertMsgContentTxt + " <===== ");
+
+    expect(alertMsg).toEqual(alertMsgContentTxt);
   }
 }
 
