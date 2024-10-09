@@ -8,3 +8,8 @@ export const feedBackData = {
   payeeAddress: faker.location.streetAddress(),
   payeeDetails: faker.word.words({ count: { min: 3, max: 5 } }),
 };
+export const sofGeneratedData = {
+  fullName: faker.person.fullName().replace(/[',.'"]/g, ""),
+  addressFirstLine: faker.location.streetAddress(),
+  addressSecondLine: faker.location.secondaryAddress(),
+};

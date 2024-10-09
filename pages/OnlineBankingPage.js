@@ -102,6 +102,30 @@ class OnlineBankingPage extends BasePage {
     this.newPayeeAlertContent = page.locator(
       onlineBankingPageLocators.newPayeeAlertContentLocator
     );
+    this.purchaseForeignCurrencySectionButton = page.locator(
+      onlineBankingPageLocators.purchaseForeignCurrencySectionButtonLocator
+    );
+    this.selectCurrencyDropDown = page.locator(
+      onlineBankingPageLocators.selectCurrencyDropDownLocator
+    );
+    this.currencyAmountInput = page.locator(
+      onlineBankingPageLocators.currencyAmountInputLocator
+    );
+    this.calculateCostsButton = page.locator(
+      onlineBankingPageLocators.calculateCostsButtonLocator
+    );
+    this.usdRadioButton = page.locator(
+      onlineBankingPageLocators.usdRadioButtonLocator
+    );
+    this.conversionAmountLabel = page.locator(
+      onlineBankingPageLocators.conversionAmountLabelLocator
+    );
+    this.purchaseCashButton = page.locator(
+      onlineBankingPageLocators.purchaseCashButtonLocator
+    );
+    this.foreignCurrencyCashAlertContent = page.locator(
+      onlineBankingPageLocators.foreignCurrencyCashAlertContentLocator
+    );
   }
 
   async verifyAccountsTitles(array) {
@@ -181,6 +205,27 @@ class OnlineBankingPage extends BasePage {
   async verifyNewPayeeAlertMsg(name) {
     const alertMsg = `The new payee ${name} was successfully created.`;
     const alertMsgContentTxt = await this.newPayeeAlertContent.textContent();
+    console.log(" =====> " + alertMsgContentTxt + " <===== ");
+
+    expect(alertMsg).toEqual(alertMsgContentTxt);
+  }
+
+  async doClickPurchaseForeignCurrency() {
+    await this.purchaseForeignCurrencySectionButton.click();
+  }
+
+  async doPurchaseForeignCurrency(currency, amount) {
+    await this.selectCurrencyDropDown.selectOption(currency);
+    await this.currencyAmountInput.fill(amount);
+    await this.usdRadioButton.click();
+    await this.calculateCostsButton.click();
+    expect(await this.conversionAmountLabel).toContainText("U.S. dollar (USD)");
+    await this.purchaseCashButton.click();
+  }
+
+  async verifyForeignCurrencyCashAlertMsg(alertMsg) {
+    const alertMsgContentTxt =
+      await this.foreignCurrencyCashAlertContent.textContent();
     console.log(" =====> " + alertMsgContentTxt + " <===== ");
 
     expect(alertMsg).toEqual(alertMsgContentTxt);

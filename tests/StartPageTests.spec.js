@@ -81,7 +81,7 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     const accountActivity =
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites
         .accountActivity;
-    const account = await onlineBankingPage.genarateRandomElement(
+    const account = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.accountArray
     );
 
@@ -95,7 +95,7 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
     const accountActivity =
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites
         .accountActivity;
-    const account = await onlineBankingPage.genarateRandomElement(
+    const account = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.accountArray
     );
     const description = dataSet.onlineBanking.trans.description;
@@ -150,13 +150,13 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
   test(" =====> Online Banking Tests | 'Pay Bills' | Pay Saved Payee 💾 💰 👤 <===== ", async () => {
     const payBills =
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites.payBills;
-    const payee = await onlineBankingPage.genarateRandomElement(
+    const payee = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.payBills.payeesList
     );
-    const account = await onlineBankingPage.genarateRandomElement(
+    const account = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.payBills.accountPayeesList
     );
-    const amount = await onlineBankingPage.genarateRandomElement(
+    const amount = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.payBills.amountPayeesList
     );
 
@@ -174,7 +174,7 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
       dataSet.mainPage.pageNavigationContent.onlineBankingActivites.payBills;
     const payeeName = feedBackData.payeeName;
     const payeeAddress = feedBackData.payeeAddress;
-    const account = await onlineBankingPage.genarateRandomElement(
+    const account = await onlineBankingPage.generateRandomElement(
       dataSet.onlineBanking.payBills.accountPayeesList
     );
     const payeeDetails = feedBackData.payeeDetails;
@@ -191,6 +191,28 @@ test.describe.only(`Online Banking Tests 💻 🏦 💳 📱. `, () => {
       payeeDetails
     );
     await onlineBankingPage.verifyNewPayeeAlertMsg(payeeName);
+  });
+  test(" =====> Online Banking Tests | 'Pay Bills' | Purchase Foreigh Currency 💸 🆕 🧾 <===== ", async () => {
+    const payBills =
+      dataSet.mainPage.pageNavigationContent.onlineBankingActivites.payBills;
+    const currency = await onlineBankingPage.generateRandomElement(
+      dataSet.onlineBanking.payBills.currencyArray
+    );
+    const amount = await onlineBankingPage.generateRandomElement(
+      dataSet.onlineBanking.payBills.amountCurrency
+    );
+    const foreignCurrencyCashAlertMsg =
+      dataSet.onlineBanking.payBills.foreignCurrencyCashAlertMsg;
+
+    await startPage.waitForWebElement(
+      startPageLocators.ourBankIsTrustedHeaderLocator
+    );
+    await startPage.clickOnOnlineBankingActivity(payBills);
+    await onlineBankingPage.doClickPurchaseForeignCurrency();
+    await onlineBankingPage.doPurchaseForeignCurrency(currency, amount);
+    await onlineBankingPage.verifyForeignCurrencyCashAlertMsg(
+      foreignCurrencyCashAlertMsg
+    );
   });
 });
 

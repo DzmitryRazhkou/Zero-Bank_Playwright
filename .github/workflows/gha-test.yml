@@ -1,0 +1,33 @@
+name: Playwright Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  zero-bank-tests_sof:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "lts/*"
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Install Playwright Browsers
+        run: yarn playwright install chromium
+
+      - name: Run Playwright Tests (Chromium)
+        env:
+          # Set the environment variable to run tests in parallel
+          CI: true
+        run: yarn playwright test --project=chromium --parallel

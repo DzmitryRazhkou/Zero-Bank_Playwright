@@ -69,7 +69,7 @@ class BasePage {
     return emailAddress + emailProvider[randomIndex];
   }
 
-  async genarateRandomElement(array) {
+  async generateRandomElement(array) {
     const randonIndex = Math.floor(Math.random() * array.length);
     return array[randonIndex];
   }

@@ -89,9 +89,38 @@ const onlineBankingPageLocators = {
   addNewPayeeButtonLocator: "#add_new_payee",
   descriptionPayeeInputLocator: "#sp_description",
   newPayeeAlertContentLocator: "#alert_content",
+
+  // Pay Biils | Purchase Foreign Currency:
+  purchaseForeignCurrencySectionButtonLocator: "a[href='#ui-tabs-3']",
+  selectCurrencyDropDownLocator: "#pc_currency",
+  currencyAmountInputLocator: "#pc_amount",
+  usdRadioButtonLocator: "#pc_inDollars_true",
+  calculateCostsButtonLocator: "#pc_calculate_costs",
+  conversionAmountLabelLocator: "#pc_conversion_amount",
+  purchaseCashButtonLocator: "#purchase_cash",
+  foreignCurrencyCashAlertContentLocator: "#alert_content",
+};
+const sofCheckoutPageLocators = {
+  // Account Summary:
+  emailInputFieldLocator: "#email",
+  phoneInputFieldLocator: "#phone-input",
+  iframeCardNumberFieldInputLocator: "#tx_iframe_cardNumber",
+  cardNumberFieldInputLocator: "input[name='cardNumber']",
+  expirationDateInputFieldLocator: "#expirationDate",
+  securityCodeInputFieldLocator: "#securityCode",
+  cardHolderNameInputFieldLocator: "#cardHolderName",
+  billingFullNameInputFieldLocator: "input[id='billing.fullName']",
+  billingAddressLineFirstInputFieldLocator: "input[id='billing.address1']",
+  billingAddressLineSecondInputFieldLocator: "input[id='billing.address2']",
+  payNowButtonLocator: "#CB-button-pay",
+  accountTitlesLocator: "h2[class='board-header']",
+  balanceLocator: "div[class='board-content']>table>tbody>tr>td:nth-child(3)",
+  billingInfoFullNameLocator: ".personal-info-block>p:first-of-type",
+  billingInfoEmailLocator: ".personal-info-block>p:last-of-type",
 };
 export default {
   startPageLocators,
   loginPageLocators,
   onlineBankingPageLocators,
+  sofCheckoutPageLocators,
 };

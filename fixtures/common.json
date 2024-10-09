@@ -102,7 +102,355 @@
         "2020-09-25",
         "2018-09-10",
         "2014-05-05"
-      ]
+      ],
+      "currencyArray": [
+        "AUD",
+        "CAD",
+        "CNY",
+        "EUR",
+        "GBP",
+        "JPY",
+        "MXN",
+        "NZD",
+        "SGD"
+      ],
+      "amountCurrency": ["100", "250", "500", "750", "1000"],
+      "foreignCurrencyCashAlertMsg": "Foreign currency cash was successfully purchased."
     }
+  },
+  "sofv2": {
+    "vendor": "bhanu409",
+    "domain": "clickbank-tst.net",
+    "sku": "flea-tick-collar",
+    "cntryUS": "US",
+    "cntryCA": "CA"
+  },
+  "credentials": {
+    "username": "bhanu409",
+    "email": "key.api411@gmail.com"
+  },
+  "usZipcodes": [
+    "33101",
+    "02115",
+    "02740",
+    "94105",
+    "94601",
+    "97205",
+    "91410",
+    "60605",
+    "92014",
+    "80019",
+    "75029",
+    "07101",
+    "10301",
+    "11204",
+    "10451",
+    "89125",
+    "32205",
+    "15230",
+    "72215",
+    "20001",
+    "23503",
+    "23607",
+    "99501"
+  ],
+  "caZipcodes": [
+    {
+      "city": "Toronto",
+      "zipCode": "M5E 1H5"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M5R 3G4"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M5V 2G3"
+    },
+    {
+      "city": "W Concord",
+      "zipCode": "L4K 2S9"
+    },
+    {
+      "city": "Edmonton",
+      "zipCode": "T5J 0B3"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M1N 1A2"
+    },
+    {
+      "city": "Halifax",
+      "zipCode": "B3L 2M9"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M4L 1S9"
+    },
+    {
+      "city": "Edmonton",
+      "zipCode": "T6E 3X8"
+    },
+    {
+      "city": "Charlottetown",
+      "zipCode": "C1C 1A4"
+    },
+    {
+      "city": "Hamilton",
+      "zipCode": "L8E 3R4"
+    },
+    {
+      "city": "Halifax",
+      "zipCode": "B3H 1B7"
+    },
+    {
+      "city": "Whitehorse",
+      "zipCode": "Y1A 6B5"
+    },
+    {
+      "city": "Whitehorse",
+      "zipCode": "Y1A 1M7"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M5V 0V7"
+    },
+    {
+      "city": "Toronto",
+      "zipCode": "M4J 3N8"
+    },
+    {
+      "city": "North York",
+      "zipCode": "M2N 5M5"
+    },
+    {
+      "city": "Vancouver",
+      "zipCode": "V6Z 3C1"
+    },
+    {
+      "city": "Vancouver",
+      "zipCode": "V6Z 0G7"
+    },
+    {
+      "city": "Vancouver",
+      "zipCode": "V6Z 0G5"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R3L 0E3"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R2L 1M8"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R3B 0S1"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R3Y 1Z3"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R3Y 2E1"
+    },
+    {
+      "city": "Winnipeg",
+      "zipCode": "R3C 3N9"
+    },
+    {
+      "city": "Montreal",
+      "zipCode": "H3G 1M8"
+    },
+    {
+      "city": "Montreal",
+      "zipCode": "H3Y 1R9"
+    },
+    {
+      "city": "Montreal",
+      "zipCode": "H3K 2A1"
+    },
+    {
+      "city": "Saint-Laurent",
+      "zipCode": "H4L 1P4"
+    },
+    {
+      "city": "Montreal",
+      "zipCode": "H2L 0H5"
+    },
+    {
+      "city": "Montreal",
+      "zipCode": "H2X 0C4"
+    },
+    {
+      "city": "Quebec",
+      "zipCode": "G2L 2A7"
+    },
+    {
+      "city": "Quebec",
+      "zipCode": "G1R 4X5"
+    },
+    {
+      "city": "Quebec",
+      "zipCode": "G1R 2H4"
+    },
+    {
+      "city": "Quebec",
+      "zipCode": "G1V 4G8"
+    },
+    {
+      "city": "Swift Current",
+      "zipCode": "S9H 3T2"
+    },
+    {
+      "city": "Ottawa",
+      "zipCode": "K1R 7P8"
+    },
+    {
+      "city": "Ottawa",
+      "zipCode": "K1R 6W2"
+    },
+    {
+      "city": "Ottawa",
+      "zipCode": "K1S 3X4"
+    },
+    {
+      "city": "Ottawa",
+      "zipCode": "K1S 2Z8"
+    },
+    {
+      "city": "Edmonton",
+      "zipCode": "T5T 4J2"
+    },
+    {
+      "city": "Whistler",
+      "zipCode": "V8E 1A4"
+    },
+    {
+      "city": "Halifax",
+      "zipCode": "B3N 3M6"
+    }
+  ],
+  "usPhoneNumber": [
+    "(954) 5695114",
+    "(985) 4804759",
+    "(773) 7848033",
+    "(980) 7867291",
+    "(512) 4442041",
+    "(512) 4442041",
+    "(407) 7810762",
+    "(469) 7208507",
+    "(424) 7066776",
+    "(718) 7236151",
+    "(770) 4547294",
+    "(773) 3296180",
+    "(972) 7365660",
+    "(602) 8600822",
+    "(602) 6524489",
+    "(614) 8473504",
+    "(617) 3035410",
+    "(626) 2774371",
+    "(626) 6230276",
+    "(510) 2926731",
+    "(818) 6329047",
+    "(801) 6910836",
+    "(858) 9996652",
+    "(213) 2270115",
+    "(480) 6824459",
+    "(206) 3654995",
+    "(732) 5204055",
+    "(215) 5646230",
+    "(215) 5826134",
+    "(212) 8983031",
+    "(213) 7562444",
+    "(213) 6006113",
+    "(818) 2224426",
+    "(202) 8072149",
+    "(909) 2744324",
+    "(201) 6773839",
+    "(301) 8298615",
+    "(301) 3271425",
+    "(305) 6699778",
+    "(305) 6898084",
+    "(267) 4952907",
+    "(267) 3432903",
+    "(732) 7183464",
+    "(310) 8295193",
+    "(312) 8699962",
+    "(323) 4412594",
+    "(323) 5750664",
+    "(512) 2966580",
+    "(985) 8361480",
+    "(407) 3910552",
+    "(408) 7145506",
+    "(732) 8754259",
+    "(949) 5413578",
+    "(909) 7500280",
+    "(727) 3829942",
+    "(347) 3318305"
+  ],
+  "caPhoneNumber": [
+    "(204) 5551234",
+    "(226) 5555678",
+    "(236) 5558901",
+    "(249) 5552345",
+    "(250) 5556789",
+    "(289) 5550123",
+    "(306) 5554567",
+    "(343) 5557890",
+    "(365) 5552345",
+    "(403) 5556789",
+    "(416) 5559012",
+    "(418) 5553456",
+    "(431) 5557890",
+    "(437) 5552345",
+    "(438) 5556789",
+    "(450) 5550123",
+    "(506) 5553456",
+    "(514) 5557890",
+    "(519) 5552345",
+    "(579) 5556789",
+    "(581) 5550123",
+    "(587) 5553456",
+    "(604) 5557890",
+    "(613) 5552345",
+    "(639) 5556789",
+    "(647) 5550123",
+    "(672) 5553456",
+    "(705) 5557890",
+    "(709) 5552345",
+    "(778) 5556789",
+    "(780) 5550123",
+    "(807) 5553456",
+    "(819) 5557890",
+    "(873) 5552345",
+    "(902) 5556789",
+    "(905) 5550123",
+    "(204) 5552345",
+    "(226) 5556789",
+    "(236) 5550123",
+    "(249) 5553456",
+    "(250) 5557890",
+    "(289) 5552345",
+    "(306) 5556789",
+    "(343) 5550123",
+    "(365) 5553456",
+    "(403) 5557890",
+    "(416) 5552345",
+    "(418) 5556789",
+    "(431) 5550123"
+  ],
+  "graphqlCalls": {
+    "sendOrderImpressionAlias": "sendOrderImpressionQuery",
+    "trackingPixelsAlias": "trackingPixels",
+    "calculateCartAlias": "calculateCart",
+    "addressSearchAlias": "addressSearch",
+    "verifyAddressAlias": "verifyAddress"
+  },
+  "creditCard": {
+    "creditCardNumber": "4788250000028291",
+    "expiryDate": "12/30",
+    "cvc": "111"
   }
 }
