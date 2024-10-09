@@ -4,7 +4,8 @@ export default defineConfig({
   testDir: "./tests",
   testMatch: "**/*.spec.js",
   retries: process.env.CI ? 2 : 0, // Retries in CI to handle flaky tests
-  workers: process.env.CI ? 1 : "100%", // Single worker in CI for stability, full capacity locally
+  workers: 4,
+  // workers: process.env.CI ? 1 : "100%", // Single worker in CI for stability, full capacity locally
   fullyParallel: true, // Run tests in parallel by default
   // forbidOnly: !!process.env.CI, // Prevent accidental commits with .only in CI
   reporter: "html", // Generate an HTML report
