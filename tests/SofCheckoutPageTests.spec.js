@@ -37,7 +37,7 @@ test.describe(`SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄. `, 
     await context.close();
   });
 
-  test.only(" =====> Verify 'Start Page' Title & URL 📝 🔗 <===== ", async () => {
+  test(" =====> Verify 'Start Page' Title & URL 📝 🔗 <===== ", async () => {
     const email = dataSet.credentials.email;
     const phone = await sofCheckoutPage.generateRandomElement(
       dataSet.usPhoneNumber

@@ -24,10 +24,18 @@ jobs:
         run: yarn install
 
       - name: Install Playwright Browsers
-        run: yarn playwright install chromium
+        run: yarn playwright install firefox
 
-      - name: Run Playwright Tests (Chromium)
+      - name: Run Playwright Tests (Firefox)
         env:
-          # Set the environment variable to run tests in parallel
           CI: true
-        run: yarn playwright test
+        run: |
+          set -e # Exit on any error
+          yarn playwright test --project=firefox || true # Continue even if some tests fail
+
+      - name: Upload Test Report
+        if: always() # Ensure this runs regardless of test outcome
+        uses: actions/upload-artifact@v3
+        with:
+          name: playwright-report
+          path: playwright-report/

@@ -8,6 +8,7 @@ export default defineConfig({
   fullyParallel: true, // Run tests in parallel by default
   // forbidOnly: !!process.env.CI, // Prevent accidental commits with .only in CI
   reporter: "html", // Generate an HTML report
+  maxFailures: 0,
 
   use: {
     browserName: "firefox", // Set the browser for all tests
