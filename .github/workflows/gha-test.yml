@@ -30,4 +30,4 @@ jobs:
         env:
           # Set the environment variable to run tests in parallel
           CI: true
-        run: yarn playwright test --project=chromium --parallel
+        run: yarn playwright test
