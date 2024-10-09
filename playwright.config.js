@@ -13,7 +13,7 @@ export default defineConfig({
 
   use: {
     browserName: "firefox", // Set the browser for all tests
-    headless: true, // Run in headless mode for consistency in CI
+    headless: false, // Run in headless mode for consistency in CI
     screenshot: "only-on-failure", // Capture screenshots on failures for debugging
     video: "retain-on-failure", // Retain video on failure for easier debugging
     ignoreHTTPSErrors: true, // Ignore HTTPS errors
