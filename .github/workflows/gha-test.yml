@@ -31,7 +31,7 @@ jobs:
           CI: true
         run: |
           set -e # Exit on any error
-          yarn playwright test --project=firefox || true # Continue even if some tests fail
+          yarn playwright test || true # Continue even if some tests fail
 
       - name: Upload Test Report
         if: always() # Ensure this runs regardless of test outcome
