@@ -24,7 +24,7 @@ jobs:
         run: yarn install
 
       - name: Install Playwright Browsers
-        run: yarn playwright install firefox
+        run: yarn create playwright
 
       - name: Run Playwright Tests (Firefox)
         env:
