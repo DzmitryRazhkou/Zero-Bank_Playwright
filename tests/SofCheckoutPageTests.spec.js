@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 const { sofGeneratedData } = require("../utils/generated-data");
 const dataSet = require("../fixtures/common.json");
 import SofCheckoutPage from "../pages/SofCheckoutPage";
@@ -11,7 +11,12 @@ let sofCheckoutPage;
 let page;
 let context;
 
-test.describe(`SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄. `, () => {
+test.describe("SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄", () => {
+  let context;
+  let page;
+  let sofCheckoutPage;
+  let zipCode;
+
   test.beforeAll(async ({ browser }) => {
     context = await browser.newContext();
   });
@@ -20,6 +25,8 @@ test.describe(`SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄. `, 
     page = await context.newPage();
     sofCheckoutPage = new SofCheckoutPage(page);
     zipCode = await sofCheckoutPage.generateRandomElement(dataSet.usZipcodes);
+
+    await sofCheckoutPage.interceptCalculateCartGraphqlCall();
     await sofCheckoutPage.navigateToSOFv2URL(
       vendor,
       domain,
@@ -37,22 +44,18 @@ test.describe(`SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄. `, 
     await context.close();
   });
 
-  test(" =====> Verify 'Start Page' Title & URL 📝 🔗 <===== ", async () => {
-    const email = dataSet.credentials.email;
+  test("Verify 'Start Page' Title & URL 📝 🔗", async () => {
+    const { email } = dataSet.credentials;
     const phone = await sofCheckoutPage.generateRandomElement(
       dataSet.usPhoneNumber
     );
-    const cardNumber = dataSet.creditCard.creditCardNumber;
-    const expiryDate = dataSet.creditCard.expiryDate;
-    const cvc = dataSet.creditCard.cvc;
-    const fullName = sofGeneratedData.fullName;
-    const addressFirstLine = sofGeneratedData.addressFirstLine;
-    const addressSecondLine = sofGeneratedData.addressSecondLine;
+    const { creditCardNumber, expiryDate, cvc } = dataSet.creditCard;
+    const { fullName, addressFirstLine, addressSecondLine } = sofGeneratedData;
 
     await sofCheckoutPage.doFillUpSOF(
       email,
       phone,
-      cardNumber,
+      creditCardNumber,
       expiryDate,
       cvc,
       fullName,
@@ -60,5 +63,9 @@ test.describe(`SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄. `, 
       addressSecondLine
     );
     await sofCheckoutPage.verifyBillingInfoFullNameAndEmail(fullName, email);
+  });
+
+  test.only("SOF v2 Intercept Calls 📝 🔗", async () => {
+    console.log(" =====> GRAPHQL CALL INTERCEPTED!!! <===== ");
   });
 });

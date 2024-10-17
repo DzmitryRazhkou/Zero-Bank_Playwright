@@ -9,10 +9,10 @@ export default defineConfig({
   fullyParallel: true, // Run tests in parallel by default
   // forbidOnly: !!process.env.CI, // Prevent accidental commits with .only in CI
   reporter: "html", // Generate an HTML report
-  maxFailures: 0,
+  // maxFailures: 0,
 
   use: {
-    browserName: "firefox", // Set the browser for all tests
+    browserName: "chromium", // Set the browser for all tests
     headless: false, // Run in headless mode for consistency in CI
     screenshot: "only-on-failure", // Capture screenshots on failures for debugging
     video: "retain-on-failure", // Retain video on failure for easier debugging

@@ -44,6 +44,140 @@ class SofCheckoutPage extends BasePage {
     );
   }
 
+  async interceptGraphqlCallApproach() {
+    // const processedRequests = new Map();
+    // await page.route("**/graphql", async (route) => {
+    //   const request = route.request();
+    //   const postData = request.postDataJSON();
+    //   // Check if the request payload contains the query name "sendOrderImpressionQuery"
+    //   if (postData?.queryName === "calculateCart") {
+    //     console.log(" >>>>> Intercepted Request Is: <<<<< ", postData);
+    //   }
+    //   // Continue with the original request
+    //   await route.continue();
+    //   // Define a handler for the response
+    //   const handleResponse = async (response) => {
+    //     const requestId = response.request().postData(); // Unique identifier for the request
+    //     // Check if the response URL matches your GraphQL endpoint and if it corresponds to the intercepted request
+    //     if (
+    //       response.url().includes("/graphql") &&
+    //       postData?.queryName === "calculateCart" &&
+    //       !processedRequests.has(requestId) // Only process if it hasn't been processed yet
+    //     ) {
+    //       processedRequests.set(requestId, true); // Mark this request as processed
+    //       const responseBody = await response.json(); // Get the response body as JSON
+    //       console.log(" >>>>> Intercepted Response Is: <<<<< ", responseBody);
+    //       // Assertion: Check if the response body has the property sendOrderImpression
+    //       expect(responseBody.data).toHaveProperty("calculateCart");
+    //       // Optionally check the value if needed
+    //       // expect(responseBody.data.sendOrderImpression).toEqual(90);
+    //       // Remove the response listener to prevent further logs
+    //       page.off("response", handleResponse);
+    //     }
+    //   };
+    //   // Listen for the response
+    //   page.on("response", handleResponse);
+    // });
+  }
+
+  async interceptCalculateCartGraphqlCall() {
+    await this.page.route("**/graphql", async (route) => {
+      const request = route.request();
+      const postData = request.postDataJSON();
+
+      if (postData && postData.queryName === "calculateCart") {
+        console.log(" >>>>> Intercepted Request Is: <<<<< ", postData);
+      }
+
+      // Continue with the original request
+      await route.continue();
+
+      // Listen for the response to the GraphQL request
+      this.page.on("response", async (response) => {
+        // Check if the response URL matches your GraphQL endpoint:
+
+        if (
+          response.url().includes("/graphql") &&
+          response.request().postDataJSON()?.queryName === "calculateCart"
+        ) {
+          const responseBody = await response.json(); // Get the response body as JSON
+
+          console.log(" >>>>> Intercepted Response Is: <<<<< ", responseBody);
+
+          // calculateCart:
+          expect(responseBody.data).toHaveProperty("calculateCart");
+          expect(responseBody.data.calculateCart).toBeInstanceOf(Object);
+
+          // lineItems:
+          expect(responseBody.data.calculateCart).toHaveProperty("lineItems");
+          expect(responseBody.data.calculateCart.lineItems).toBeInstanceOf(
+            Array
+          );
+
+          // duplicate:
+          expect(responseBody.data.calculateCart).toHaveProperty("duplicate");
+          expect(typeof responseBody.data.calculateCart.duplicate).toBe(
+            "boolean"
+          );
+          expect(responseBody.data.calculateCart.duplicate).toEqual(false);
+
+          // shippingAmount:
+          expect(responseBody.data.calculateCart).toHaveProperty(
+            "shippingAmount"
+          );
+          expect(typeof responseBody.data.calculateCart.shippingAmount).toBe(
+            "string"
+          );
+
+          // subtotal:
+          expect(responseBody.data.calculateCart).toHaveProperty("subtotal");
+          expect(typeof responseBody.data.calculateCart.subtotal).toBe(
+            "string"
+          );
+
+          // discountTotal:
+          expect(responseBody.data.calculateCart).toHaveProperty(
+            "discountTotal"
+          );
+          expect(responseBody.data.calculateCart.discountTotal).toEqual(null);
+
+          // discountRate:
+          expect(responseBody.data.calculateCart).toHaveProperty(
+            "discountRate"
+          );
+          expect(responseBody.data.calculateCart.discountRate).toEqual(null);
+
+          // total:
+          expect(responseBody.data.calculateCart).toHaveProperty("total");
+          expect(typeof responseBody.data.calculateCart.total).toBe("string");
+
+          // tax:
+          expect(responseBody.data.calculateCart).toHaveProperty("tax");
+          expect(typeof responseBody.data.calculateCart.tax).toBe("string");
+
+          // softDescriptor:
+          expect(responseBody.data.calculateCart).toHaveProperty(
+            "softDescriptor"
+          );
+          expect(typeof responseBody.data.calculateCart.softDescriptor).toBe(
+            "string"
+          );
+          expect(responseBody.data.calculateCart.softDescriptor).toEqual(
+            "CLKBANK*FleaTickCollar"
+          );
+
+          // availableItems:
+          expect(responseBody.data.calculateCart).toHaveProperty(
+            "availableItems"
+          );
+          expect(responseBody.data.calculateCart.availableItems).toBeInstanceOf(
+            Array
+          );
+        }
+      });
+    });
+  }
+
   async navigateToSOFv2URL(
     vendor,
     domain,
@@ -54,10 +188,15 @@ class SofCheckoutPage extends BasePage {
   ) {
     const url = `https://${vendor}.pay.${domain}/?cbitems=${sku}&country=${country}&zipcode=${zipCode}`;
     await this.page.goto(url, { timeout: 100000 });
-    await this.page.waitForLoadState("networkidle");
+    // await this.page.waitForLoadState("networkidle");
 
     // Get the current URL after navigation
-    const currentURL = this.page.url();
+    let currentURL = this.page.url();
+
+    // Replace 'orders' or 'orders2' with 'orders2' in the URL
+    currentURL = currentURL.replace(/orders(?:2)?/, "orders2");
+    await this.page.goto(currentURL, { timeout: 100000 });
+    await this.page.waitForLoadState("networkidle");
 
     // Verify if the current URL contains vendor, domain, and sku
     if (
@@ -66,7 +205,7 @@ class SofCheckoutPage extends BasePage {
       !currentURL.includes(sku)
     ) {
       throw new Error(
-        `The current URL does not contain the expected vendor, domain, or sku. Expected URL: ${url}, Actual URL: ${currentURL}`
+        `The current URL does not contain the expected vendor, domain, or sku. Expected URL: ${url}, Modified URL: ${currentURL}`
       );
     }
     console.log(`Navigation successful and verified: ${currentURL}`);
