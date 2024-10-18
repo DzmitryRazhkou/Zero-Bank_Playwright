@@ -21,10 +21,32 @@ jobs:
         with:
           node-version: "lts/*"
 
+      - name: Install system dependencies for Playwright browsers
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y \
+            libwoff1 \
+            libvpx7 \
+            libevent-2.1-7 \
+            libopus0 \
+            libgstapp1.0-0 \
+            libgstpbutils1.0-0 \
+            libgstaudio1.0-0 \
+            libgsttag1.0-0 \
+            libgstvideo1.0-0 \
+            libgstgl1.0-0 \
+            libgstmpegts1.0-0 \
+            libgstsdp1.0-0 \
+            libharfbuzz-icu0 \
+            libhyphen0 \
+            libx264-160 \
+            libflite1 \
+            libflite1-dev \
+            libGLESv2-2
+
       - name: Install dependencies
         run: yarn install
 
-      # Add the missing step to install Playwright browsers
       - name: Install Playwright Browsers
         run: yarn playwright install
 
