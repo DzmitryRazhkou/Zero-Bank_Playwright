@@ -36,7 +36,6 @@ jobs:
         env:
           CI: true
         run: |
-          set -e
           yarn sof-v2
 
       # Step 6: Upload Playwright HTML report
