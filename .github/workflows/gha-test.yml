@@ -11,31 +11,29 @@ on:
 jobs:
   zero-bank-tests_sof:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4 # Updated to v4 for Node.js 20 compatibility
+        uses: actions/checkout@v4
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4 # Updated to v4 for Node.js 20 compatibility
+        uses: actions/setup-node@v4
         with:
           node-version: "lts/*"
 
       - name: Install dependencies
         run: yarn install
 
-      - name: Install Playwright Browsers
-        run: yarn create playwright
-
       - name: Run Playwright Tests (Firefox)
         env:
           CI: true
         run: |
-          set -e # Exit on any error
-          yarn sof-v2 || true # Continue even if some tests fail
+          set -e
+          yarn sof-v2 || true
 
       - name: Upload Test Report
-        if: always() # Ensure this runs regardless of test outcome
-        uses: actions/upload-artifact@v4 # Updated to v4 for Node.js 20 compatibility
+        if: always()
+        uses: actions/upload-artifact@v4
         with:
           name: playwright-report
           path: playwright-report/

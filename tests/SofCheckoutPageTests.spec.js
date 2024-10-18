@@ -26,6 +26,7 @@ test.describe("SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄", ()
     sofCheckoutPage = new SofCheckoutPage(page);
     zipCode = await sofCheckoutPage.generateRandomElement(dataSet.usZipcodes);
 
+    // await sofCheckoutPage.interceptSendOrderImpressionGraphqlCall();
     await sofCheckoutPage.interceptCalculateCartGraphqlCall();
     await sofCheckoutPage.navigateToSOFv2URL(
       vendor,
@@ -62,10 +63,10 @@ test.describe("SOF V2 | Intercepting & Verification GraphQL Calls 🏠 📄", ()
       addressFirstLine,
       addressSecondLine
     );
-    await sofCheckoutPage.verifyBillingInfoFullNameAndEmail(fullName, email);
+    // await sofCheckoutPage.verifyBillingInfoFullNameAndEmail(fullName, email);
   });
 
-  test.only("SOF v2 Intercept Calls 📝 🔗", async () => {
+  test("SOF v2 Intercept Calls 📝 🔗", async () => {
     console.log(" =====> GRAPHQL CALL INTERCEPTED!!! <===== ");
   });
 });

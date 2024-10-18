@@ -80,6 +80,39 @@ class SofCheckoutPage extends BasePage {
     // });
   }
 
+  async interceptSendOrderImpressionGraphqlCall() {
+    await this.page.route("**/graphql", async (route) => {
+      const request = route.request();
+      const postData = request.postDataJSON();
+
+      if (postData && postData.queryName === "sendOrderImpressionQuery") {
+        console.log(" >>>>> Intercepted Request Is: <<<<< ", postData);
+      }
+
+      // Continue with the original request
+      await route.continue();
+
+      // Listen for the response to the GraphQL request
+      this.page.on("response", async (response) => {
+        // Check if the response URL matches your GraphQL endpoint:
+
+        if (
+          response.url().includes("/graphql") &&
+          response.request().postDataJSON()?.queryName ===
+            "sendOrderImpressionQuery"
+        ) {
+          const responseBody = await response.json(); // Get the response body as JSON
+
+          console.log(" >>>>> Intercepted Response Is: <<<<< ", responseBody);
+
+          // sendOrderImpressionV2:
+          expect(responseBody.data).toBeInstanceOf(Object);
+          expect(responseBody.data).toHaveProperty("sendOrderImpressionV2");
+        }
+      });
+    });
+  }
+
   async interceptCalculateCartGraphqlCall() {
     await this.page.route("**/graphql", async (route) => {
       const request = route.request();
