@@ -24,6 +24,10 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
+      # Add the missing step to install Playwright browsers
+      - name: Install Playwright Browsers
+        run: yarn playwright install
+
       - name: Run Playwright Tests (Firefox)
         env:
           CI: true
