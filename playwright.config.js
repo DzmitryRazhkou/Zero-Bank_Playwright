@@ -1,24 +1,21 @@
 import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
-  testDir: "./tests",
-  testMatch: "**/*.spec.js",
-  retries: process.env.CI ? 2 : 0, // Retries in CI to handle flaky tests
-  workers: 4,
-  // workers: process.env.CI ? 1 : "100%", // Single worker in CI for stability, full capacity locally
+  testDir: "./tests", // Directory where your tests are located
+  testMatch: "**/*.spec.js", // Match test files ending in .spec.js
+  retries: process.env.CI ? 2 : 0, // Retries only in CI for flaky tests
+  workers: process.env.CI ? 1 : 4, // Single worker in CI for stability, parallel locally
   fullyParallel: true, // Run tests in parallel by default
-  // forbidOnly: !!process.env.CI, // Prevent accidental commits with .only in CI
   reporter: "html", // Generate an HTML report
-  // maxFailures: 0,
 
   use: {
-    browserName: "chromium", // Set the browser for all tests
-    headless: false, // Run in headless mode for consistency in CI
-    screenshot: "only-on-failure", // Capture screenshots on failures for debugging
-    video: "retain-on-failure", // Retain video on failure for easier debugging
+    browserName: "chromium", // Set default browser to Chromium
+    headless: process.env.CI ? true : false, // Headless in CI for faster execution
+    screenshot: "only-on-failure", // Capture screenshots on test failures
+    video: "retain-on-failure", // Retain video recordings only on failures
     ignoreHTTPSErrors: true, // Ignore HTTPS errors
-    trace: "on-first-retry", // Enable tracing on the first retry for improved diagnostics
-    viewport: { width: 1920, height: 1080 }, // Set a common viewport size
-    baseURL: "http://zero.webappsecurity.com/index.html", // Set base URL
+    trace: "on-first-retry", // Enable tracing on the first retry for detailed diagnostics
+    viewport: { width: 1920, height: 1080 }, // Standard viewport for consistent results
+    baseURL: "http://zero.webappsecurity.com/index.html", // Base URL for your tests
   },
 });

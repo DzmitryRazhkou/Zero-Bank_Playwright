@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  run-playwright-tests:
+  sof-playwright-tests:
     runs-on: ubuntu-latest
 
     steps:
@@ -29,14 +29,15 @@ jobs:
 
       # Step 4: Install Playwright browsers
       - name: Install Playwright browsers
-        run: yarn add @playwright/test@latest --dev
+        run: yarn playwright install
 
       # Step 5: Run Playwright tests (with retries and parallel execution as defined in Playwright config)
       - name: Run Playwright tests
         env:
           CI: true
         run: |
-          yarn sof-v2
+          set -e
+          yarn playwright test
 
       # Step 6: Upload Playwright HTML report
       - name: Upload Playwright Test Report
